@@ -1,0 +1,36 @@
+body {
+  background: white;
+}
+
+.clientBox {
+  display: grid;
+  width: 100%;
+}
+
+input {
+  width: 250px;
+}
+
+select {
+  width: 250px;
+}
+
+button {
+  width: 150px;
+}
+
+.addItemHeader {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.addItemHeader h5 {
+  padding-left: 50px;
+}
+
+.addItem {
+  display: flex;
+  flex-flow: wrap;
+  align-items: center;
+}

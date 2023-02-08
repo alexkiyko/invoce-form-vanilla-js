@@ -8,6 +8,59 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="clientBox">
+      <label for="name">Company:</label>
+      <input type="text" id="company" />
+      <label for="name">Contact Name:</label>
+      <input type="text" id="contactName" />
+      <label for="name">Address:</label>
+      <input type="text" id="address" />
+      <label for="name">Phone:</label>
+      <input type="number" id="phone" />
+      <label for="name">Email:</label>
+      <input name="email" type="email" id="email" />
+      <button onclick="addCustomer()">Add Customer</button>
+      <label for="customer">Select Customer:</label>
+      
+      <select id="selectItem" name="selectItem">
+        <option value="none">Select</option>
+      </select>
+
+      
+    </div>
+
+    <div class="addItemHeader">
+      <div>
+        <h5>Description</h5>
+      </div>
+      <div>
+        <h5>QTY</h5>
+      </div>
+      <div>
+        <h5>Unit Price</h5>
+      </div>
+      <div>
+        <h5>Amount</h5>
+      </div>
+    </div>
+    <div id="form">
+      <div id="row-addService-0">
+        <input type="text" id="description" placeholder="Description">
+        <select id="selectQYT" name="selectQYT" onchange="getQyt()">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <input type="number" id="unitPrice" placeholder="Unit Price" onchange="getUnitPrice()">
+        <input type="text" id="amount" placeholder="Amount">
+      </div>
+
+    </div>
+      <button onclick="addNewRow()">Add row</button>
+    </div>
 
     <script src="scripts.js"></script>
   </body>
