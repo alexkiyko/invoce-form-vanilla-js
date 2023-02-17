@@ -18,15 +18,14 @@
       <label for="name">Phone:</label>
       <input type="number" id="phone" />
       <label for="name">Email:</label>
-      <input name="email" type="email" id="email" />
-      <button onclick="addCustomer()">Add Customer</button>
+      <input name="email" type="email" id="email" required/>
+      <button id="addCustomer" onclick="addCustomer()">Add Customer</button>
       <label for="customer">Select Customer:</label>
       
-      <select id="selectItem" name="selectItem">
+      <select id="selectItem" name="selectItem" onchange="selectCustomer()">
         <option value="none">Select</option>
       </select>
-
-      
+      <input type="text" id="selectedCustomer" value="" hidden>
     </div>
 
     <div class="addItemHeader">
@@ -44,22 +43,15 @@
       </div>
     </div>
     <div id="form">
-      <div id="row-addService-0">
+      <div id="row-addService-0" class="addItem">
         <input type="text" id="description" placeholder="Description">
-        <select id="selectQYT" name="selectQYT" onchange="getQyt()">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-        <input type="number" id="unitPrice" placeholder="Unit Price" onchange="getUnitPrice()">
-        <input type="text" id="amount" placeholder="Amount">
+        <input type="text" id="qyt" placeholder="Qyt.">
+        <input type="text" id="unitPrice" placeholder="Unit Price">
+        <input type="text" id="amount" placeholder="Amount" disabled>
       </div>
-
     </div>
-      <button onclick="addNewRow()">Add row</button>
+      <button id="addRow" onclick="addNewRow()">Add row</button>
+      <button type="submit" id="submit" onclick="postData()">Submit</button>
     </div>
 
     <script src="scripts.js"></script>

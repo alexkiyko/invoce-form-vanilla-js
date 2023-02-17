@@ -1,25 +1,18 @@
 const clientList = [
   {
-    id: "1",
-    company: "Test1",
-    contactName: "Alex Smith",
-    address: "123 st NY 11105",
+    id: 1,
+    company: "MGM Management Inc.",
+    contactName: "John Smith",
+    address: "123 Fulton St. Astoria, NY 11105",
     phone: "1231234455",
   },
   {
-    id: "1",
-    company: "Test2",
+    id: 2,
+    company: "Star Solutions Inc.",
     contactName: "Alex Smith",
-    address: "123 st NY 11105",
+    address: "34 16 Ave. Brooklyn, NY 11204",
     phone: "1231234455",
-  },
-  {
-    id: "1",
-    company: "Test3",
-    contactName: "Alex Smith",
-    address: "123 st NY 11105",
-    phone: "1231234455",
-  },
+  }
 ];
 
 function addCustomer() {
@@ -29,25 +22,18 @@ function addCustomer() {
   const phone = document.getElementById("phone").value;
   const email = document.getElementById("email").value;
 
-  // console.log(company, contact, address, phone, email);
-  // console.log(document.getElementById("selectItem").value);
-  // get selected value
-  // var e = document.getElementById("selectQYT");
-  // console.log('qyt', e.options[e.selectedIndex].text);
-
-}
-let unitPrice
-let qyt;
-function getUnitPrice() {
-  unitPrice = document.getElementById("unitPrice").value;
-  console.log('price', unitPrice)
+  console.log(company, contact, address, phone, email);
 }
 
-function getQyt() {
-  el = document.getElementById("selectQYT");
-  qyt = el.options[el.selectedIndex].text
-  console.log('qyt', qyt)
-  // if (qyt === 'QYT') alert('test')
+function selectCustomer() {
+  const dropdown = document.getElementById("selectItem");
+  const selectedItem = dropdown.options[dropdown.selectedIndex]//.text;
+  console.log(selectedItem.value)
+  const c = clientList.find((obj) => {
+    return obj.id === Number(selectedItem.value)
+  })
+  console.log(c)
+  document.getElementById('selectedCustomer').value = c.id 
 }
 
 function setAttributes(el, attrs) {
@@ -59,54 +45,77 @@ function setAttributes(el, attrs) {
 function addNewRow() {
   const form = document.getElementById('form')
   const rows = document.querySelectorAll('div[id^="row-addService"]')
-  console.log(rows.length)
-  
-  const div = document.createElement('div');
-  div.setAttribute('id', `row-addService-${rows.length}`)
-  form.appendChild(div)
 
-  const inputDesc = document.createElement('input')
-  setAttributes(inputDesc, {'type': 'text', 'id':"description", 'placeholder':"Description" })
-  div.appendChild(inputDesc)
-
-  const selectQYT = document.createElement('select')
-  setAttributes(selectQYT, {'name': 'selectQYT', 'id':"selectQYT" })
-  div.appendChild(selectQYT)
+  if (rows.length < 5) {
+    const div = document.createElement('div');
+    div.setAttribute('id', `row-addService-${rows.length}`)
+    div.setAttribute('class', 'addItem')
+    form.appendChild(div)
   
-  for(let i = 0; i <= 5; i++) {
-    const option = document.createElement('option')
-    setAttributes(option, {'value': i })
-    option.innerText = i
-    selectQYT.appendChild(option)
+    const inputDesc = document.createElement('input')
+    setAttributes(inputDesc, {'type': 'text', 'id':"description", 'placeholder':"Description" })
+    div.appendChild(inputDesc)
+  
+    const inputQYT = document.createElement('input')
+    setAttributes(inputQYT, {'type': 'text', 'id':"qyt", 'placeholder':"Qyt." })
+    div.appendChild(inputQYT)
+  
+    const inputUnitPrice = document.createElement('input')
+    setAttributes(inputUnitPrice, {'type': 'text', 'id':"unitPrice", 'placeholder':"Unit Price" })
+    div.appendChild(inputUnitPrice)
+  
+    const inputAmount = document.createElement('input')
+    setAttributes(inputAmount, {'type': 'text', 'id':"amount", 'placeholder':"Amount", 'disabled': true })
+    div.appendChild(inputAmount)
   }
-
-  const inputUnitPrice = document.createElement('input')
-  setAttributes(inputUnitPrice, {'type': 'number', 'id':"unitPrice", 'placeholder':"Unit Price" })
-  div.appendChild(inputUnitPrice)
-
-  const inputAmount = document.createElement('input')
-  setAttributes(inputAmount, {'type': 'text', 'id':"amount", 'placeholder':"Amount" })
-  div.appendChild(inputAmount)
 }
 
 let amountSelector = document.getElementById("amount")
-let unit = document.getElementById("unitPrice")
-let selectS = document.getElementById("selectQYT")
-document.addEventListener('change', (event) => {
-  console.log(event.target.nodeName)
-  console.log(event)
-  // if(event.target.nodeName === "BUTTON") {
-  //     const id = event.target.id
-  //     console.log(id)
-  //     for (let i = 0; i < list.length; i++) {
-  //         if(list[i].id === id) list[i].done = !list[i].done
-          
-  //     }
-  // }
+let unitPriceSelector = document.getElementById("unitPrice")
+let qytSelector = document.getElementById("qyt")
+
+// update amount fields
+document.addEventListener('input', (event) => {
+  let parent = event.target.parentElement.id
+
+  if(event.target.nodeName === "INPUT") {
+    if(event.target.id === 'qyt' || event.target.id === 'unitPrice') {
+      let qytValue = document.querySelector(`#${parent} input[id='qyt']`).value;
+      let unitPriceValue = document.querySelector(`#${parent} input[id='unitPrice']`).value;
+      qytValue = Number(qytValue);
+      unitPriceValue = Number(unitPriceValue);
+
+      if (qytValue > 0 && unitPriceValue > 0) {
+        let amountSelector = document.querySelector(`#${parent} input[id='amount']`);
+        amountSelector.value = (qytValue * unitPriceValue).toFixed(2)
+      }
+
+      if (qytValue === 0 || unitPriceValue === 0) {
+        let amountSelector = document.querySelector(`#${parent} input[id='amount']`);
+        amountSelector.value = '';
+      }
+    }
+  }
 }) 
-// console.log(document.getElementById("unitPrice").value)
 
+const data = [];
+function postData() {
+  const rows = document.querySelectorAll('div[id^="row-addService"]');
+  rows.forEach((row) => {
+    let descValue = document.querySelector(`#${row.id} input[id='description']`).value;
+    let qytValue = document.querySelector(`#${row.id} input[id='qyt']`).value;
+    let unitPriceValue = document.querySelector(`#${row.id} input[id='unitPrice']`).value;
+    let amountValue = document.querySelector(`#${row.id} input[id='amount']`).value;
 
+    data.push({
+      description: descValue,
+      quantity: qytValue,
+      unitPrice: unitPriceValue,
+      amount: amountValue
+    })
+  })
+  console.log(data)
+}
 // function selectCustomer() {
 //   for (let i = 0; i < clientList.length; i++) {
 //     const listItem = document.createElement("option");
