@@ -42,6 +42,24 @@ function setAttributes(el, attrs) {
   }
 }
 
+// removes item row
+document.addEventListener('click', (event) => {
+  const rows = document.querySelectorAll('div[id^="row-addService"]')
+  let parent = event.target.parentElement.id
+
+  if(event.target.nodeName === "BUTTON" && event.target.innerText === 'X') {
+    if(rows.length === 1) {
+      document.querySelector(`#${parent} input[id='description']`).value = '';
+      document.querySelector(`#${parent} input[id='qyt']`).value = '';
+      document.querySelector(`#${parent} input[id='unitPrice']`).value = '';
+      document.querySelector(`#${parent} input[id='amount']`).value = '';
+    } else {
+      const currentRow = document.querySelector(`#${parent}`);
+      currentRow.remove();
+    }
+  }
+}) 
+
 function addNewRow() {
   const form = document.getElementById('form')
   const rows = document.querySelectorAll('div[id^="row-addService"]')
@@ -67,6 +85,11 @@ function addNewRow() {
     const inputAmount = document.createElement('input')
     setAttributes(inputAmount, {'type': 'text', 'id':"amount", 'placeholder':"Amount", 'disabled': true })
     div.appendChild(inputAmount)
+
+    const removeBtn = document.createElement('button')
+    removeBtn.innerText = 'X'
+    setAttributes(removeBtn, {'class': 'removeRow' })
+    div.appendChild(removeBtn)
   }
 }
 
