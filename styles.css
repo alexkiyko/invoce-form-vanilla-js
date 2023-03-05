@@ -1,5 +1,5 @@
-body {
-  background: white;
+body, html {
+  /* background: rgb(251, 251, 251); */
 }
 
 .clientBox {
@@ -7,46 +7,35 @@ body {
   width: 100%;
 }
 
-input {
-  width: 250px;
-}
-
-select {
-  width: 250px;
-}
-
-button {
-  width: 150px;
-}
-
-.addItemHeader {
-  display: flex;
-  justify-content: center;
-  
-}
-
-.addItemHeader h5 {
-  padding-left: 100px;
-} 
-
-
 .addItem {
+  margin-bottom: 0px;
+  padding: 5px;
   display: flex;
-  flex-flow: nowrap;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-select {
-  width: 250px;
-  padding: 5px 10px;
-  margin: 5px 2px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 5px; 
+#form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form-wrap {
+  margin-top: 10px; 
+}
+
+
+.desc {
+  display: inline-flex;
+}
+
+.price {
+  display: inline-flex;
 }
 
 input#description {
-  width: 70%;
+  width: 445px;
   padding: 5px 10px;
   margin: 5px 2px;
   display: inline-block;
@@ -55,12 +44,21 @@ input#description {
 }
 
 input#qyt, input#unitPrice, input#amount {
-  width: 5%;
-  padding: 5px 10px;
+  width: 100px;
+  padding: 5px 10px; 
   margin: 5px 2px;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 5px; 
+}
+
+#invoiceDate {
+  /* width: 350px; */
+  /* padding: 5px 10px;
+  margin: 10px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;  */
 }
 
 button#submit {
@@ -76,7 +74,7 @@ button#submit:hover {
   background-color: #45a049;
 }
 
-button#addRow, #addCustomer {
+button#addRow, #addCustomer, #showAddNewForm {
   background-color: #616060;
   color: white;
   padding: 5px 15px;
@@ -85,20 +83,20 @@ button#addRow, #addCustomer {
   border-radius: 50px;
 }
 
-button#addRow:hover, #addCustomer:hover {
+button#addRow:hover, #addCustomer:hover, #showAddNewForm:hover {
   background-color: #767676;
 }
 
 button.removeRow {
   background-color: #db6363;
   color: white;
-  padding: 5px 15px;
-  margin: 8px 0;
+  padding: 5px 10px;
+  margin: 5px 2px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  text-align: left;
+  text-align: center;
   display: inline-block;
-  width:  40px;
+  width:  90px;
 }
 
 button.removeRow:hover {
@@ -106,7 +104,411 @@ button.removeRow:hover {
 }
 
 input:focus {
-    outline: none;
-    border: 4px solid red;
-    box-shadow: 0 0 3px #8a8a8a;
+  outline: none;
+  border: 4px solid red;
+  box-shadow: 0 0 3px #000000;
 }
+select:focus {
+  outline: none;
+  border: 4px solid red;
+  box-shadow: 0 0 3px #000000;
+}
+
+#msg {
+  color: #4CAF50;
+}
+
+#showData > p {
+  margin: 5px;
+}
+
+#showData {
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  display: block;
+}
+
+#selectItem {
+  /* width: 370px;
+  padding: 5px 10px;
+  margin: 10px 0px;
+  margin-bottom: 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;  */
+  /* width: 155px; */
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+
+
+/* #selectCustomer {
+  margin-top: 0px;
+  display: inline-block;
+} */
+
+.servLocation {
+  margin-top: 20px;
+  /* display: inline-block; */
+}
+
+.data {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center; 
+  /* border: 1px solid #d22323; */
+}
+
+/* .data-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; 
+  border: 1px solid #d22323;
+} */
+
+.customer-data-wrap {
+  display: flex;
+  flex-direction: column;
+  /* margin: 10px; */
+  /* margin-bottom: 20px; */
+  /* justify-content: space-around; */
+  /* padding-right: 40px; */
+
+}
+
+.invoice-data-wrap {
+  margin: 3px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: end;
+  margin-right: 20px;
+
+}
+
+.customer-data {
+  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 10px 30px;
+  /* border: 1px solid #d22323; */
+  width: 450px;
+}
+
+.invoice-data {
+  /* margin-top: 0px; */
+  /* margin-bottom: 20px; */
+  margin: 10px 10px 10px 10px;
+  padding: 10px 10px 0px 10px;
+  /* display: inline-block; */
+  /* border: 1px solid #d22323; */
+  width: 450px;
+}
+
+.invoice-data-wrap label {
+  padding: 5px 10px;
+}
+
+input#invoiceNumber, input#projectId {
+  width: 133px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+input#invoiceDate, input#dueDate {
+  width: 133px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+
+select#selectType {
+  width: 155px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+}
+
+.service-location-container {
+  margin-bottom: 10px;
+}
+
+.customer-data-wrap-service-call {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.service-call-input-show {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+input#serviceCallDescription {
+  width: 320px;
+  /* width: auto; */
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
+input#serviceCallAmount {
+  width: 70px;
+  /* width: auto; */
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  background-color: rgb(238, 237, 237);
+  /* margin-left: 10px; */
+}
+
+input#serviceDate {
+  /* width: 133px; */
+  width: auto;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+
+#inputServiceLocation {
+  width: auto;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.navBar {
+  display: flex; 
+  flex-wrap: nowrap;
+  justify-content:center;
+}
+
+.navBar > div {
+  margin: 15px;
+}
+
+
+#inputServiceLocation {
+  /* width: 350px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-left: 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;  */
+}
+
+#yes, #no {
+  width: 12px;
+  margin-left: 15px;
+  margin-top: 0px;
+}
+
+
+.footer {
+  display:flex;
+  /* border: 3px solid red; */
+  justify-content: center;
+  flex-wrap: wrap;
+  width: auto;
+}
+
+.right {
+  /* border: 3px solid blue; */
+  height: 200px;
+  width: 460px;
+  padding: 5px
+}
+
+.notes {
+  /* border: 3px solid blue; */
+  height: 150px;
+  /* width: 400px; */
+  /* padding-left: 10px; */
+  /* margin-left: 0px; */
+  /* margin-top: 0px; */
+}
+
+textarea {
+  resize: none;
+  width: 430px;
+  height: 80px;
+  /* margin-left: 10px; */
+}
+
+.totals-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  /* padding-left: 150px;
+  padding-right: 10px; */
+  /* border: 1px solid #8a4b4b; */
+  margin: 2px;
+}
+
+.totals-wrap p {
+  margin: 5px;
+}
+
+#tax, #discount, #amountPaid, #subtotal, #total, #balanceDue  {
+    /* width: 80px; */
+    /* padding: 5px 10px;  */
+    /* margin: 10px 2px; */
+    border: 1px solid #ccc;
+
+    /* border-radius: 5px;  */
+    margin-left: 10px;
+    text-align: center;
+    /* margin-bottom: 0px; */
+}
+
+
+.add-line-item {
+  display: flex;
+  flex-flow: row;
+
+  justify-content: center;
+  flex-wrap: wrap;
+  /* margin-right: 800px; */
+  padding-right: 370px;
+}
+
+
+/* .test {
+  display: flex;
+  height: 100px;
+  background-color: blueviolet;
+} */
+
+@media screen and (max-width: 1000px) {
+  .test {
+      display: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* preview page */
+
+.invoice-wrap {
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
+  border: 1px solid green;
+  align-items: center; 
+  width: auto
+} 
+
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* header section */
+.myCompanyInfo {
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-bottom: 30px;
+  width: 500px;
+  background-color: red;
+}
+
+.myCompanyInfo p {
+  margin: 0px;
+  white-space: nowrap;
+}
+
+.invoice {
+  background-color: yellow;
+  text-align: right;
+  width: 200px;
+  padding-top: 15px;
+  padding-right: 140px;
+} 
+
+/* date sections */
+.companyInfo {
+  text-align: left;
+  width: 450px;
+  background-color: pink;
+  margin: 0px;
+}
+
+.companyInfo p {
+  margin: 0px;
+  white-space: nowrap;
+}
+
+.invoice-date {
+  padding-left: 100px;
+  text-align: left;
+  background-color: red;
+  width: 200px;
+  /* margin: 0px; */
+}
+
+.invoice-date p {
+  margin: 0px;
+}
+
+/* service location and date*/
+
+.service-date {
+  width: 200px;
+  background-color: #8a8a8a;
+  padding-left: 100px;
+}
+.service-date p {
+  margin: 0px;
+}
+
+.location {
+  width: 450px;
+  background-color: pink;
+}
+.location p {
+  margin: 0px;
+}
+
+table, th, td {
+  /* border: 1px solid black; */
+  border-collapse: collapse;
+}
+
+
+td.t-price {
+  text-align: right;
+  /* padding-right: 25px; */
+}
+
+td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+
+}
+
+tr.t-header {
+  color: gray;
+  text-align: center;
+}
+
+

@@ -3,12 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" />
+    <!-- content="width=device-width, initial-scale=1.0" -->
     <title>Invoice Form</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="clientBox">
+    <div>
+      <p id="msg"></p>
+    </div>
+
+    <!-- <div>
+      <button onclick="showAddNewForm()" id="showAddNewForm">
+        Add new customer
+      </button>
+    </div> -->
+
+    <div class="clientBox" id="clientBox">
       <label for="name">Company:</label>
       <input type="text" id="company" />
       <label for="name">Contact Name:</label>
@@ -18,42 +29,175 @@
       <label for="name">Phone:</label>
       <input type="number" id="phone" />
       <label for="name">Email:</label>
-      <input name="email" type="email" id="email" required/>
+      <input name="email" type="email" id="email" required />
       <button id="addCustomer" onclick="addCustomer()">Add Customer</button>
-      <label for="customer">Select Customer:</label>
-      
-      <select id="selectItem" name="selectItem" onchange="selectCustomer()">
-        <option value="none">Select</option>
-      </select>
-      <input type="text" id="selectedCustomer" value="" hidden>
     </div>
 
-    <div class="addItemHeader">
-      <div>
-        <h5>Description</h5>
+  
+      <div class="navBar">
+        <div>
+          <button onclick="showAddNewForm()" id="showAddNewForm">
+            Add customer
+          </button>
+        </div>
+        <div>
+          <button id="showAddNewForm">
+            Add your company
+          </button>
+        </div>
       </div>
-      <div>
-        <h5>QTY</h5>
+    
+
+    <div class="data">
+      <div class="data-container">
+        <!-- <div> -->
+        <div class="customer-data">
+          <div class="customer-data-wrap">
+            <label for="customer">Bill To</label><br />
+            <select
+              id="selectItem"
+              name="selectItem"
+              onchange="selectCustomer()"
+            >
+              <option value="none">Select</option>
+            </select>
+          </div>
+          <div id="showData"></div>
+
+          <div class="customer-data-wrap">
+            <label for="date">Service Date</label><br />
+            <input type="date" name="Service Date" id="serviceDate" />
+          </div>
+
+           <div class="service-location-container">
+             <p>Service Location</p>
+             <input type="radio" id="yes" name="fav_language" value="yes" checked/>
+             <label for="html">Same as Billing Address</label><br />
+             <input type="radio" id="no" name="fav_language" value="no"/>
+             <label for="css">Different</label><br />
+           </div>
+           <div class="service-location-input-show">
+               <div class="customer-data-wrap">
+               <input type="text" name="Service Location" id="inputServiceLocation" placeholder="Enter Address" />
+             </div>
+           </div>
+
+          <div class="customer-data-wrap-service-call">
+            <label for="Service Call">Service Call Fee</label>
+            <input type="checkbox" name="service call" id="serviceCall" >
+          </div>
+          <div class="service-call-input-show">
+              <input type="text" name="Service Call Description" id="serviceCallDescription" placeholder="Description (optional)">
+              <input type="text" name="Service Call Amount" id="serviceCallAmount" placeholder="Amount">
+          </div>
+        </div>
+
+        </div>
+        <!-- <div class="spacer"></div> -->
+        
+        <div class="invoice-data">
+          <div class="invoice-data-wrap">
+            <label for="customer">Type</label><br />
+            <select id="selectType" name="Type">
+              <option value="invoice">Invoice</option>
+              <option value="estimate">Estimate</option>
+            </select>
+          </div>
+          <div class="invoice-data-wrap">
+            <label for="date">Invoice #</label><br />
+            <input type="text" name="Invoice Number" id="invoiceNumber" />
+          </div>
+          <div class="invoice-data-wrap">
+            <label for="date">Date</label><br />
+            <input type="date" name="Invoice Date" id="invoiceDate" />
+          </div>
+          <div class="invoice-data-wrap">
+            <label for="date">Due Date</label><br />
+            <input type="date" name="Due Date" id="dueDate" />
+          </div>
+          <div class="invoice-data-wrap">
+            <label for="Project ID">Project ID</label><br />
+            <input type="text" name="Project Id" id="projectId" />
+          </div>
       </div>
-      <div>
-        <h5>Unit Price</h5>
-      </div>
-      <div>
-        <h5>Amount</h5>
-      </div>
+
+      <!-- </div> -->
+
+      <!-- <div id="showData"></div> -->
+
+      
     </div>
+
+    <div class="test"></div>
+
     <div id="form">
-      <div id="row-addService-0" class="addItem">
-        <input type="text" id="description" placeholder="Description">
-        <input type="text" id="qyt" placeholder="Qyt.">
-        <input type="text" id="unitPrice" placeholder="Unit Price">
-        <input type="text" id="amount" placeholder="Amount" disabled>
-        <button class="removeRow">X</button>
+      <div class="form-wrap">
+        <div id="row-addService-0" class="addItem">
+          <!-- <div class="border"> -->
+          <div class="desc">
+            <input type="text" id="description" placeholder="Description" />
+          </div>
+          <div class="price">
+            <input type="text" id="qyt" placeholder="Qyt." />
+            <input type="text" id="unitPrice" placeholder="Unit Price" />
+            <input type="text" id="amount" placeholder="Amount" disabled />
+            <button class="removeRow">Remove</button>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+
+    <hr style="width: 500px;">
+    <div class="add-line-item">
+      <button id="addRow" onclick="addNewRow()">+ Line Item</button>
+      <!-- <button type="submit" id="submit" onclick="postData()">Submit</button> -->
+    </div>
+
+    
+    
+    
+
+    <div class="footer">
+      <div class="left">
+        <div class="notes">
+          <p>Additional Notes:</p>
+          <textarea name="notes" id="notes" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+      <div class="right">
+        <div class="totals-wrap">
+          <p>Subtotal $</p>
+          <!-- <p id="subtotal">$ </p> -->
+          <input type="text" id="subtotal" disabled>
+        </div>
+        <div class="totals-wrap">
+          <p>Discount $</p>
+          <input type="text" id="discount">
+        </div>
+        <div class="totals-wrap">
+          <p>Tax %</p>
+          <input type="text" id="tax">
+        </div>
+        <div class="totals-wrap">
+          <p>Total $</p>
+          <!-- <p id="total">$ </p> -->
+          <input type="text" id="total" disabled>
+        </div>
+        <div class="totals-wrap">
+          <p>Amount Paid $</p>
+          <input type="text" id="amountPaid">
+        </div>
+        <div class="totals-wrap">
+          <p>Balance Due $</p>
+          <!-- <p id="balanceDue">$</p> -->
+          <input type="text" id="balanceDue" disabled>
+        </div>
       </div>
     </div>
-      <button id="addRow" onclick="addNewRow()">Add row</button>
-      <button type="submit" id="submit" onclick="postData()">Submit</button>
-    </div>
+
+
 
     <script src="scripts.js"></script>
   </body>
